@@ -8,6 +8,7 @@ const MongoStore = require("connect-mongo");
 const bodyParser = require("body-parser");
 const UserModel = require("./models/User");
 const blogRoutes = require("./routes/blogRoutes");
+const cookieParser = require('cookie-parser');
 
 dotenv.config();
 const app = express();
@@ -15,6 +16,7 @@ const PORT = process.env.PORT || 5000;
 
 // MongoDB connection
 const mongoURI = "mongodb+srv://istiyaqkhan4532:zDCJJhckL2um4icl@cluster0.oy9nb.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+mongoose.set('strictQuery', false); // or true, depending on your preference
 mongoose.connect(mongoURI)
     .then(() => console.log('Connected to MongoDB'))
     .catch(err => console.error('Failed to connect to MongoDB', err));
@@ -36,6 +38,7 @@ app.use(session({
     }),
     cookie: { maxAge: 24 * 60 * 60 * 1000 } // 1 day
 }));
+app.use(cookieParser());
 
 // User Routes
 app.post("/signup", async (req, res) => {
