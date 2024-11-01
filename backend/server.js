@@ -66,17 +66,26 @@ app.post("/login", async (req, res) => {
             if (passwordMatch) {
                 req.session.user = { id: user._id, name: user.name, email: user.email };
                 console.log(user.name);
-                res.json("Success");
+                res.status(200).json({ message: "Success", user: req.session.user });
             } else {
-                res.status(401).json("Password doesn't match");
+                res.status(401).json({ error: "Password doesn't match" });
             }
         } else {
-            res.status(404).json("No Records found");
+            res.status(404).json({ error: "No Records found" });
         }
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
 });
+
+app.get('/user', (req, res) => {
+    if (req.session.user) {
+        res.status(200).json({ user: req.session.user });
+    } else {
+        res.status(401).json({ error: "Not authenticated" });
+    }
+});
+
 
 app.post("/logout", (req, res) => {
     if (req.session) {
@@ -92,13 +101,7 @@ app.post("/logout", (req, res) => {
     }
 });
 
-app.get('/user', (req, res) => {
-    if (req.session.user) {
-        res.json({ user: req.session.user });
-    } else {
-        res.status(401).json("Not authenticated");
-    }
-});
+
 
 // Blog Routes
 app.use('/api/blogs', blogRoutes);
