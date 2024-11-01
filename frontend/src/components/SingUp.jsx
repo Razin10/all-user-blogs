@@ -12,7 +12,7 @@ function SignUp(){
 
     const handleSignup = (e) => {
         e.preventDefault();
-        axios.post("http://localhost:5000/signup", { name, email, password })
+        axios.post("https://all-user-blogs-api.onrender.com/signup", { name, email, password })
             .then(result => {
                 if (result.status === 201) {
                     navigate("/login");
