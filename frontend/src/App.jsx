@@ -14,7 +14,7 @@ const App = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-      axios.get('http://localhost:5000/user', { withCredentials: true })
+      axios.get('https://all-user-blogs-api.onrender.com/user', { withCredentials: true })
           .then(response => {
               if (response.data.user) {
                   setIsLoggedIn(true);
