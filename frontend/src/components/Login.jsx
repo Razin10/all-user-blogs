@@ -16,10 +16,10 @@ function Login({ setIsLoggedIn }) {
         setError(""); // Reset error message
 
         try {
-            const result = await axios.post("http://localhost:5000/login", { email, password }, { withCredentials: true });
+            const result = await axios.post("https://all-user-blogs-api.onrender.com/login", { email, password }, { withCredentials: true });
 
             if (result.data === "Success") {
-                const response = await axios.get('http://localhost:5000/user', { withCredentials: true });
+                const response = await axios.get('https://all-user-blogs-api.onrender.com/user', { withCredentials: true });
                 if (response.data.user) {
                     setIsLoggedIn(true);
                     setEmail(""); // Clear email input
