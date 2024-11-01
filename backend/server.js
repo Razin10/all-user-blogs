@@ -15,7 +15,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // MongoDB connection
-const mongoURI = "mongodb+srv://istiyaqkhan4532:zDCJJhckL2um4icl@cluster0.oy9nb.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+const mongoURI = process.env.MONGODB_URI;
 mongoose.set('strictQuery', false); // or true, depending on your preference
 mongoose.connect(mongoURI)
     .then(() => console.log('Connected to MongoDB'))
@@ -23,7 +23,7 @@ mongoose.connect(mongoURI)
 
 // Middleware
 app.use(cors({
-    origin: 'http://localhost:5173', // Replace with your frontend's URL
+    origin: 'https://all-user-blogs-frontend.onrender.com', // Replace with your frontend's URL
     credentials: true
 }));
 app.use(express.json());
