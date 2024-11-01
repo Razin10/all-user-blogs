@@ -6,7 +6,7 @@ function Logout({ setIsLoggedIn }) {
     const navigate = useNavigate();
 
     const handleLogout = () => {
-        axios.post("http://localhost:5000/logout", {}, { withCredentials: true })
+        axios.post("https://all-user-blogs-api.onrender.com/logout", {}, { withCredentials: true })
             .then(response => {
                 if (response.status === 200) {
                     setIsLoggedIn(false);
