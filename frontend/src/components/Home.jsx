@@ -10,7 +10,7 @@ function Home() {
 
     useEffect(() => {
         if (!user) {
-            axios.get('https://all-user-blogs-api.onrender.com/user', { withCredentials: true })
+            axios.get('http://localhost:3001/user', { withCredentials: true })
                 .then(response => {
                     if (response.data.user) {
                         setUser(response.data.user);
