@@ -37,8 +37,13 @@ app.use(session({
     store: MongoStore.create({
         mongoUrl: mongoURI
     }),
-    cookie: { maxAge: 24 * 60 * 60 * 1000 } // 1 day
+    cookie: {
+        maxAge: 24 * 60 * 60 * 1000, // 1 day
+        sameSite: 'None', // Necessary for cross-origin cookies
+        secure: true // Set to true if using HTTPS
+    }
 }));
+
 app.use(cookieParser());
 
 // User Routes
