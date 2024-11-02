@@ -10,10 +10,10 @@ function Login({ setIsLoggedIn, isLoggedIn }) {
 
     const handleLogin = (e) => {
         e.preventDefault();
-        axios.post("http://localhost:3001/login", { email, password }, { withCredentials: true })
+        axios.post("https://all-user-blogs-api.onrender.com/login", { email, password }, { withCredentials: true })
             .then(result => {
                 if (result.data === "Success") {
-                    axios.get('http://localhost:3001/user', { withCredentials: true })
+                    axios.get('https://all-user-blogs-api.onrender.com/user', { withCredentials: true })
                         .then(response => {
                             if (response.data.user) {
                               setIsLoggedIn(true);
