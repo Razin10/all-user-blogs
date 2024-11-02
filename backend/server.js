@@ -66,20 +66,24 @@ app.post("/signup", async (req, res) => {
 app.post("/login", async (req, res) => {
     try {
         const { email, password } = req.body;
+        console.log(`Login attempt with email: ${email}`); // Log the email being used for login
         const user = await UserModel.findOne({ email });
         if (user) {
             const passwordMatch = await bcrypt.compare(password, user.password);
             if (passwordMatch) {
                 req.session.user = { id: user._id, name: user.name, email: user.email };
-                console.log(user.name);
+                console.log(`Login successful for user: ${user.name}`); // Log successful login
                 res.status(200).json({ message: "Success", user: req.session.user });
             } else {
+                console.log("Password doesn't match"); // Log password mismatch
                 res.status(401).json({ error: "Password doesn't match" });
             }
         } else {
+            console.log("No records found"); // Log when no user is found
             res.status(404).json({ error: "No Records found" });
         }
     } catch (error) {
+        console.error("Login error:", error); // Log the error for debugging
         res.status(500).json({ error: error.message });
     }
 });
