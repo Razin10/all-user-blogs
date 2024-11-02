@@ -24,7 +24,7 @@ mongoose.connect(mongoURI)
 // Middleware
 app.use(cors({
     origin: 'https://all-user-blogs-frontend.onrender.com', // Replace with your frontend's URL
-     methods: ['GET', 'POST', 'PUT', 'DELETE'] 
+    methods: ['GET', 'POST', 'PUT', 'DELETE'] ,
     credentials: true
 }));
 app.use(express.json());
