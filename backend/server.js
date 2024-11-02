@@ -89,6 +89,7 @@ app.post("/login", async (req, res) => {
 });
 
 app.get('/user', (req, res) => {
+    console.log('Session:', req.session); // Log the session object
     if (req.session.user) {
         res.status(200).json({ user: req.session.user });
     } else {
